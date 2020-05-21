@@ -266,9 +266,9 @@
 
                 <div class="text-center text-lg-center">
                     <div class="col-md-11">
-                        <a class="btn btn-primary btn-xl my-5" onclick="validateForm();">Send Info</a>
+                        <a id="contact-button" class="btn btn-primary btn-xl my-5">Send Info</a>
                     </div>
-                    <div class="status col-md-11 my-3"></div>
+                    <div id="status" class="status col-md-11 my-3"></div>
                 </div>
             </div>
             <!--Grid column-->
@@ -321,31 +321,6 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/js/mdb.min.js">
-    </script>
-    <script>
-        document.getElementById('status').innerHTML = "Sending...";
-        formData = {
-            'name': $('input[name=name]').val(),
-            'email': $('input[name=email]').val(),
-            'subject': $('input[name=subject]').val(),
-            'message': $('textarea[name=message]').val()
-        };
-
-
-        $.ajax({
-            url: "mail.php",
-            type: "POST",
-            data: formData,
-            success: function (data, textStatus, jqXHR) {
-
-                $('#status').text(data.message);
-                if (data.code) //If mail was sent successfully, reset the form.
-                    $('#contact-form').closest('form').find("input[type=text], textarea").val("");
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $('#status').text(jqXHR);
-            }
-        });
     </script>
 </body>
 
