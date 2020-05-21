@@ -323,7 +323,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/js/mdb.min.js">
     </script>
     <script>
-        document.getElementById('status').innerHTML = "Sending...";
+        var $status = $('#status')
+
+        $status.text("Sending...")
+
         formData = {
             'name': $('input[name=name]').val(),
             'email': $('input[name=email]').val(),
@@ -331,19 +334,22 @@
             'message': $('textarea[name=message]').val()
         };
 
-
         $.ajax({
             url: "mail.php",
             type: "POST",
             data: formData,
             success: function (data, textStatus, jqXHR) {
+                $status.text(data.message);
 
-                $('#status').text(data.message);
-                if (data.code) //If mail was sent successfully, reset the form.
+                if (data.code) { //If mail was sent successfully, reset the form.
                     $('#contact-form').closest('form').find("input[type=text], textarea").val("");
+                }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#status').text(jqXHR);
+                $status.text(textStatus);
+                
+                console.log(textStatus)
+                console.log(errorThrown)
             }
         });
     </script>
