@@ -12,6 +12,7 @@
  */
 :root {
   --blue: #10193b;
+  --blueother: #0091ea;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -86,6 +87,10 @@
   border-left: solid 1px var(--blue);
 }
 
+.links {
+  color: var(--blueother);
+  text-decoration: underline;
+}
 
 /* end */
 
